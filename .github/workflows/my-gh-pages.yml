@@ -4,13 +4,15 @@ on:
   push:
     branches:
     - master
-  env:
-      PROJECT_PATH: /dist
 
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    
+    env:
+      PROJECT_PATH: /dist
+    
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -28,7 +30,7 @@ jobs:
 
     - name: Build
       run: npm run build:prod
-      working-directory: ${{ github.workspace }}/${{ env.PROJECT_PATH }}
+      # working-directory: ${{ github.workspace }}/${{ env.PROJECT_PATH }}
 
 
     - name: Deploy
