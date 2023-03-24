@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     
     env:
-      PROJECT_PATH: ../dist
+      # PROJECT_PATH: ../dist
     
     steps:
     - name: Checkout
@@ -23,16 +23,19 @@ jobs:
         node-version: '16'
 
     - name: Install dependencies
-      run: npm install
+      run: |
+        ls
+        npm install
 
     # - name: Run tests
     #   run: npm run test:headless
 
     - name: Build
       run: |
+        ls
         npm run build:prod
         echo ${{ github.workspace }}
-      working-directory: ${{ github.workspace }}/${{ env.PROJECT_PATH }}
+      # working-directory: ${{ github.workspace }}/${{ env.PROJECT_PATH }}
 
 
     - name: Deploy
@@ -43,5 +46,5 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: dist/testpage
         enable_jekyll: true
-        working-directory: ${{ github.workspace }}/${{ env.PROJECT_PATH }}
+        # working-directory: ${{ github.workspace }}/${{ env.PROJECT_PATH }}
         #
