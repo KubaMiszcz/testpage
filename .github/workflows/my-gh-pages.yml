@@ -29,8 +29,9 @@ jobs:
     #   run: npm run test:headless
 
     - name: Build
-      run: npm run build:prod
-      run: echo "$GITHUB_WORKSPACE"
+      run: |
+        npm run build:prod
+        echo "$GITHUB_WORKSPACE"
       working-directory: ${{ github.workspace }}/${{ env.PROJECT_PATH }}
 
 
