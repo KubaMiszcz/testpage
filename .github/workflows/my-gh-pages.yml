@@ -34,11 +34,12 @@ jobs:
 
 
     - name: Deploy
-      echo: ${GITHUB_WORKSPACE}
       if: success()
       uses: peaceiris/actions-gh-pages@v3
       with:
+        run: echo "$GITHUB_WORKSPACE"
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: dist/testpage
         enable_jekyll: true
+        working-directory: ${{ github.workspace }}/${{ env.PROJECT_PATH }}
         #
