@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     
     env:
-      PROJECT_PATH: /dist
+      PROJECT_PATH: ../dist
     
     steps:
     - name: Checkout
@@ -31,7 +31,7 @@ jobs:
     - name: Build
       run: |
         npm run build:prod
-        echo "$GITHUB_WORKSPACE"
+        echo ${{ github.workspace }}
       working-directory: ${{ github.workspace }}/${{ env.PROJECT_PATH }}
 
 
