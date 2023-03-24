@@ -5,9 +5,12 @@ on:
     branches:
     - master
 
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+  env:
+      PROJECT_PATH: /dist
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -25,12 +28,14 @@ jobs:
 
     - name: Build
       run: npm run build:prod
+      working-directory: ${{ github.workspace }}/${{ env.PROJECT_PATH }}
+
 
     - name: Deploy
       if: success()
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: docs/testpage
+        publish_dir: dist/testpage
         enable_jekyll: true
         #
